@@ -77,3 +77,21 @@ a {
     border-radius: 1rem !important;
     max-width: 36rem;
 }
+
+.navbar-brand {
+    color: var(--muted);
+}
+
+.btn {
+    margin: 5px;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+table {
+    width: 100% !important;
+    border-collapse: collapse;
+}
