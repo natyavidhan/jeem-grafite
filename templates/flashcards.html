@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <h1 class="mb-4">Flashcards - {{topic}}</h1>
+        {% if content.flash_cards %}
+            {% for card in content.flash_cards %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Front</h5>
+                    <p class="card-text">{{card.Front}}</p>
+                    <button class="btn btn-primary" onclick="this.nextElementSibling.classList.toggle('d-none')">Show Back</button>
+                    <div class="mt-3 d-none">
+                        <h5>Back</h5>
+                        <p>{{card.Back}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No flashcards available.</p>
+        {% endif %}
+        <a href="/{{sub}}/{{chapter}}/{{topic}}" class="btn btn-primary">Back to Content</a>
+    </div>
+</div>
+{% endblock %}
