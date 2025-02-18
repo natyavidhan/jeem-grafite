@@ -14,6 +14,17 @@ body {
     color: var(--text);
 }
 
+mjx-container {
+    display: inline !important;
+}
+
+.option {
+    cursor: pointer;
+}
+
+.option:hover {
+    background-color: #3A3A3E;
+}
 /* .item {
     background-color: var(--secondary);
     color: var(--text);

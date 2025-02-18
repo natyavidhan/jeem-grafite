@@ -56,6 +56,10 @@ def flashcards(sub, chapter, topic):
     content = get_content(sub, chapter, topic)
     return render_template('flashcards.html', sub=sub, chapter=chapter, topic=topic, content=content)
 
+@app.route('/<sub>/<chapter>/<topic>/pyqs')
+def pyqs(sub, chapter, topic):
+    content = get_content(sub, chapter, topic)
+    return render_template('pyqs.html', sub=sub, chapter=chapter, topic=topic, content=content)
 
 if __name__ == '__main__':
     app.run(debug=True)

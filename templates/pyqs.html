@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-12">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/{{sub}}">{{sub.capitalize().replace("-", " ").title()}}</a></li>
+                <li class="breadcrumb-item"><a href="/{{sub}}/{{chapter}}">{{chapter.replace("-", " ").title()}}</a></li>
+                <li class="breadcrumb-item active">{{topic.replace("-", " ").title()}}</li>
+            </ol>
+        </nav>
+        <h1 class="mb-4">Previous Year Questions - {{topic.replace("-", " ").title()}}</h1>
+        {% if content.pyqs %}
+            {% for question in content.pyqs %}
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h4 class="card-title">Question</h4>
+                    <p class="card-text">{{question.question|safe}}</p>
+                    <h6><span class="badge text-bg-secondary mb-2">{{question.paper_id.replace("-", " ").title()}}</span></h6>
+                    {% if question.question_type == 'mcq' %}
+                    <h4>Options</h4>
+                    <ul class="list-group">
+                        {% for option in question.options %}
+                        <li class="list-group-item option" data-answer="{{question.answer}}" data-selected="{{option.identifier}}" data-exp="{{question.explanation}}">
+                            <strong>{{option.identifier}}:</strong> {{option.content|safe}}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% elif question.question_type == 'integer' %}
+                    <h4>Enter your answer</h4>
+                    <input type="number" class="form-control integer-answer" data-answer="{{question.answer}}">
+                    <button class="btn btn-primary mt-2 check-integer-answer">Check Answer</button>
+                    {% endif %}
+                    <div class="mt-3 result"></div>
+                    <div class="mt-3 explaination d-none alert alert-dark">
+                        <h5>Explaination</h5>
+                        <p>{{question.explanation|safe}}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        {% else %}
+            <p>No previous year questions available.</p>
+        {% endif %}
+        <a href="/{{sub}}/{{chapter}}/{{topic}}" class="btn btn-primary mb-3">Back to Content</a>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('.option').forEach(function(option) {
+        option.addEventListener('click', function() {
+            const selectedAnswer = this.getAttribute('data-selected');
+            const correctAnswer = this.getAttribute('data-answer');
+            const resultDiv = this.parentElement.nextElementSibling;
+
+            if (selectedAnswer === correctAnswer) {
+                resultDiv.innerHTML = '<div class="alert alert-success" id="math-content">Correct!</div>';
+                // if (window.MathJax) {
+                //     // MathJax.typesetClear(); // Clear old rendering cache
+                //     MathJax.typesetPromise([document.getElementById("math-content")])
+                //         .catch(err => console.error("MathJax render error:", err));
+                // } else {
+                //     console.error("MathJax not loaded");
+                // }
+                let exp = this.parentElement.nextElementSibling.nextElementSibling;
+                exp.classList.remove('d-none');
+            } else {
+                resultDiv.innerHTML = '<div class="alert alert-danger">Incorrect. The correct answer is ' + correctAnswer + '.</div>';
+                let exp = this.parentElement.nextElementSibling.nextElementSibling;
+                if (!exp.classList.contains('d-none')) {
+                    exp.classList.add('d-none');
+                }
+            }
+            
+        });
+    });
+
+    document.querySelectorAll('.check-integer-answer').forEach(function(button) {
+        button.addEventListener('click', function() {
+            const input = this.previousElementSibling;
+            const enteredAnswer = input.value;
+            const correctAnswer = input.getAttribute('data-answer');
+            const resultDiv = this.nextElementSibling;
+
+            if (enteredAnswer === correctAnswer) {
+                resultDiv.innerHTML = '<div class="alert alert-success">Correct!</div>';
+                let exp = this.nextElementSibling.nextElementSibling;
+                exp.classList.remove('d-none');
+            } else {
+                resultDiv.innerHTML = '<div class="alert alert-danger">Incorrect. The correct answer is ' + correctAnswer + '.</div>';
+                let exp = this.nextElementSibling.nextElementSibling;
+                if (!exp.classList.contains('d-none')) {
+                    exp.classList.add('d-none');
+                }
+            }
+        });
+    });
+});
+</script>
+{% endblock %}
