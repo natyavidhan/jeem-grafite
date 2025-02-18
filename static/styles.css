@@ -6,6 +6,7 @@
     --secondary: #27272A;
     --muted: #939393;
     --bs-secondary-color: var(--muted);
+    --bs-dark: var(--secondary) !important;
 }
 
 body {
@@ -42,4 +43,37 @@ a {
 .item:hover {
     background-color: #3A3A3E;
     color: var(--text);
+}
+
+.card {
+    background-color: var(--secondary);
+    color: var(--text);
+    border-radius: 0.5rem !important;
+    padding: 0.25rem;
+    margin: 5px;
+    border: none;
+}
+
+.btn-dark {
+    background-color: var(--text);
+    color: #000000;
+    border: none;
+}
+
+.option {
+    background-color: var(--secondary);
+    color: var(--text);
+    border: 1px solid var(--muted) !important;
+    margin: 5px;
+    border-radius: 1rem !important;
+    max-width: 36rem;
+}
+
+.integer-answer {
+    background-color: var(--secondary);
+    color: var(--text);
+    border: 1px solid var(--muted) !important;
+    margin: 5px;
+    border-radius: 1rem !important;
+    max-width: 36rem;
 }
