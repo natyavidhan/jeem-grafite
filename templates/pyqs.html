@@ -1,15 +1,14 @@
 {% extends "base.html" %}
-
+{% block crumbs %}
+<li class="breadcrumb-item"><a href="/">Home</a></li>
+<li class="breadcrumb-item"><a href="/{{sub}}">{{sub.capitalize()}}</a></li>
+<li class="breadcrumb-item"><a href="/{{sub}}/{{chapter}}">{{chapter.replace("-", " ").title()}}</a></li>
+<li class="breadcrumb-item"><a href="/{{sub}}/{{chapter}}/{{topic}}">{{topic.replace("-", " ").title()}}</a></li>
+<li class="breadcrumb-item active">PYQs</li>
+{% endblock crumbs %}
 {% block content %}
 <div class="row">
     <div class="col-md-12">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/{{sub}}">{{sub.capitalize().replace("-", " ").title()}}</a></li>
-                <li class="breadcrumb-item"><a href="/{{sub}}/{{chapter}}">{{chapter.replace("-", " ").title()}}</a></li>
-                <li class="breadcrumb-item active">{{topic.replace("-", " ").title()}}</li>
-            </ol>
-        </nav>
         <h1 class="mb-4">Previous Year Questions - {{topic.replace("-", " ").title()}}</h1>
         {% if content.pyqs %}
             {% for question in content.pyqs %}

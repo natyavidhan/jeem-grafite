@@ -5,7 +5,7 @@
     --primary: #09090B;
     --secondary: #27272A;
     --muted: #939393;
-    --bs-body-bg: var(--secondary);
+    --bs-secondary-color: #939393 !important;
 }
 
 body {
@@ -24,6 +24,11 @@ mjx-container {
 
 .option:hover {
     background-color: #3A3A3E;
+}
+
+a {
+    color: var(--text);
+    text-decoration: none;
 }
 /* .item {
     background-color: var(--secondary);

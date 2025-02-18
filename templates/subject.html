@@ -1,4 +1,8 @@
 {% extends "base.html" %}
+{% block crumbs %}
+<li class="breadcrumb-item"><a href="/">Home</a></li>
+<li class="breadcrumb-item active">{{ sub.capitalize() }}</li>
+{% endblock crumbs %}
 {% block content %}
 <div class="row">
     <div class="col-md-12">

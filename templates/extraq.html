@@ -1,8 +1,15 @@
 {% extends "base.html" %}
+{% block crumbs %}
+<li class="breadcrumb-item"><a href="/">Home</a></li>
+<li class="breadcrumb-item"><a href="/{{sub}}">{{sub.capitalize()}}</a></li>
+<li class="breadcrumb-item"><a href="/{{sub}}/{{chapter}}">{{chapter.replace("-", " ").title()}}</a></li>
+<li class="breadcrumb-item"><a href="/{{sub}}/{{chapter}}/{{topic}}">{{topic.replace("-", " ").title()}}</a></li>
+<li class="breadcrumb-item active">Practice Questions</li>
+{% endblock crumbs %}
 {% block content %}
 <div class="row">
     <div class="col-md-12">
-        <h1 class="mb-4">Practice Questions - {{topic}}</h1>
+        <h1 class="mb-4">Practice Questions - {{topic.replace("-", " ").title()}}</h1>
         {% if content.extra_ques %}
             {% for question in content.extra_ques %}
             <div class="card mb-3">
