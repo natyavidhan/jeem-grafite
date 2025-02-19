@@ -17,7 +17,9 @@
         <div class="mt-4">
             <a href="/{{sub}}/{{chapter}}/{{topic}}/extra-q" class="btn btn-dark">Practice Questions</a>
             <a href="/{{sub}}/{{chapter}}/{{topic}}/extra-q/flashcards" class="btn btn-dark">Flashcards</a>
+            {% if sub != "chemistry" %}
             <a href="/{{sub}}/{{chapter}}/{{topic}}/pyqs" class="btn btn-dark">Previous Year Questions</a>
+            {% endif %}
         </div>
     </div>
 </div>

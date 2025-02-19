@@ -58,6 +58,8 @@ def flashcards(sub, chapter, topic):
 
 @app.route('/<sub>/<chapter>/<topic>/pyqs')
 def pyqs(sub, chapter, topic):
+    if sub == "chemistry":
+        return redirect(url_for('index'))
     content = get_content(sub, chapter, topic)
     return render_template('pyqs.html', sub=sub, chapter=chapter, topic=topic, content=content)
 
